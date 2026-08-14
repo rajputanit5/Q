@@ -1,0 +1,1 @@
+Subjective version of NEET Answer Noting. Same UI/features; answers are typed instead of OMR options. Enter=next, Shift+Enter=new line. Unattempted questions are skipped during checking. Includes custom timer, autosave, palette, marking, dark mode, checking, PDF export, GitHub Pages/PWA assets.

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1220"><title>NEET Answer Noting — V2</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+<header class="topbar">
+  <div class="brand"><div class="logo">N</div><div><h1>NEET Answer Noting</h1><span>OMR Practice • V2</span></div></div>
+  <div class="top-actions">
+    <div class="timer-wrap"><span class="timer-dot"></span><span id="timer">03:20:00</span></div>
+    <button id="themeBtn" class="icon-btn" title="Toggle dark mode">☾</button>
+    <button id="newBtn" class="outline-btn">New Test</button>
+  </div>
+</header>
+<main>
+<section id="setup" class="setup-page">
+  <div class="hero"><span class="eyebrow">NEET-STYLE PRACTICE</span><h2>Answer faster.<br><em>Review smarter.</em></h2>
+  <p>A focused OMR-style answer sheet for 200-question practice sessions. Built for keyboard-first NEET preparation.</p></div>
+  <div class="setup-card">
+<div class="practice-type-card">
+  <div class="setup-label">PRACTICE TYPE</div>
+  <div class="practice-type-options">
+    <button type="button" class="type-choice active" data-mode="objective">
+      <span class="type-icon">①②③④</span>
+      <strong>Objective / OMR</strong>
+      <small>Select 1–4 options</small>
+    </button>
+    <button type="button" class="type-choice" data-mode="subjective">
+      <span class="type-icon">✎</span>
+      <strong>Subjective</strong>
+      <small>Type your answer</small>
+    </button>
+  </div>
+</div>
+
+    <div class="setup-head"><div><h3>Start a test</h3><p>Choose your practice settings.</p></div><span class="badge">200 Q MAX</span></div>
+    <label>Number of questions</label>
+    <div class="count-row"><button class="step" data-step="-10">−10</button><input id="countInput" type="number" min="1" max="200" value="200"><button class="step" data-step="10">+10</button></div>
+    <label>Timer duration</label>
+    <div class="timer-settings">
+      <input id="hoursInput" type="number" min="0" max="23" value="3" aria-label="Hours">
+      <span>:</span>
+      <input id="minutesInput" type="number" min="0" max="59" value="20" aria-label="Minutes">
+      <span>:</span>
+      <input id="secondsInput" type="number" min="0" max="59" value="0" aria-label="Seconds">
+    </div>
+    <label class="switch-line"><input id="timerToggle" type="checkbox" checked><span class="switch"></span><span>Enable timer</span></label>
+    <label class="switch-line"><input id="autosaveToggle" type="checkbox" checked><span class="switch"></span><span>Auto-save progress</span></label>
+    <button id="startBtn" class="start-btn">Start Practice <span>→</span></button>
+    <div class="setup-shortcuts"><kbd>Type</kbd> answer &nbsp; <kbd>Enter</kbd> next &nbsp; <kbd>M</kbd> mark</div>
+  </div>
+</section>
+
+<section id="test" class="hidden">
+<div class="test-layout">
+<div class="main-panel">
+<div class="test-status"><div><span class="label">QUESTION</span><strong id="qNumber">1</strong><span class="muted">/ <span id="qTotal">200</span></span></div><div class="progress"><div id="progress"></div></div><div class="completion"><strong id="answered">0</strong> answered</div></div>
+<div class="answer-card">
+<div class="answer-head"><div><span id="answerState" class="state">UNANSWERED</span></div><button id="markBtn" class="mark">☆ Mark for review</button></div>
+<div class="question-area"><span class="q-watermark" id="watermark">001</span><h2>Write your answer for this question.</h2><p>Type your subjective answer below. Your response is saved automatically.</p></div>
+<div class="omr-options">
+<button class="omr" data-opt="1"><span class="bubble">1</span><span>Option 1</span><kbd>1</kbd></button>
+<button class="omr" data-opt="2"><span class="bubble">2</span><span>Option 2</span><kbd>2</kbd></button>
+<button class="omr" data-opt="3"><span class="bubble">3</span><span>Option 3</span><kbd>3</kbd></button>
+<button class="omr" data-opt="4"><span class="bubble">4</span><span>Option 4</span><kbd>4</kbd></button>
+</div>
+<div class="subjective-answer">
+<textarea id="answerInput" maxlength="5000" placeholder="Type your answer here..." spellcheck="true"></textarea>
+<div class="answer-input-footer"><span>Subjective answer</span><span id="charCount">0 / 5000</span></div>
+</div>
+<div class="nav"><button id="prevBtn" class="nav-btn">← Previous</button><button id="nextBtn" class="next-btn">Next <span>→</span></button></div>
+</div>
+<div class="keyboard-hint"><kbd>Type</kbd> answer <span>•</span> <kbd>Enter</kbd> next <span>•</span> <kbd>←</kbd><kbd>→</kbd> navigate <span>•</span> <kbd>M</kbd> mark <span>•</span> <kbd>Esc</kbd> review</div>
+</div>
+<aside class="palette-card">
+<div class="palette-head"><div><h3>Question Palette</h3><span id="paletteSummary">0 / 200 answered</span></div><button id="paletteMarkFilter" class="filter-btn">★</button></div>
+<div class="legend"><span><i class="answered-dot"></i> Answered</span><span><i class="marked-dot"></i> Marked</span><span><i class="empty-dot"></i> Unanswered</span></div>
+<div id="palette" class="palette"></div>
+<button id="reviewBtn" class="review-btn">Review & Submit <span>→</span></button>
+</aside>
+</div>
+</section>
+
+<section id="review" class="hidden">
+<div class="review-page">
+<div class="review-header"><div><span class="eyebrow">FINAL REVIEW</span><h2>Check your answer sheet</h2><p>You can jump back to any question before starting checking.</p></div><div class="review-big"><strong id="reviewAnswered">0</strong><span>answered</span></div></div>
+<div class="review-stats"><div><span>Answered</span><strong id="rsAnswered">0</strong></div><div><span>Unanswered</span><strong id="rsUnanswered">0</strong></div><div><span>Marked</span><strong id="rsMarked">0</strong></div><div><span>Time left</span><strong id="rsTime">03:20:00</strong></div></div>
+<div class="review-actions"><button id="backBtn" class="outline-btn">← Edit Answers</button><button id="checkBtn" class="start-btn">Start Checking ✓</button><button id="exportBtn" class="outline-btn">Export Results ↓</button><button id="newPracticeBtn" class="outline-btn">New Practice</button></div>
+<div id="reviewGrid" class="review-grid"></div>
+</div>
+</section>
+
+<section id="checking" class="hidden">
+<div class="review-page">
+<div class="review-header"><div><span class="eyebrow">ANSWER CHECKING</span><h2>Mark your result</h2><p>Use <b>1 = Correct</b>, <b>2 = Incorrect</b>, then <b>Enter</b> for the next question.</p></div><div class="review-big"><strong id="checkedCount">0</strong><span>checked</span></div></div>
+<div class="checking-card">
+<div class="check-top"><span id="checkQuestion">Q1</span><span id="checkSelected">Selected: —</span><span id="checkResult" class="check-state">NOT CHECKED</span></div>
+<div class="check-main"><span class="check-watermark" id="checkWatermark">001</span><h2>Was your typed answer correct?</h2><div id="typedAnswerPreview" class="typed-answer-preview">—</div><p>Compare the response above with the official answer key / solution.</p>
+<div class="result-options"><button id="correctBtn" class="result-btn correct"><span>✓</span><b>Correct</b><small>Press 1</small></button><button id="incorrectBtn" class="result-btn incorrect"><span>✕</span><b>Incorrect</b><small>Press 2</small></button></div></div>
+<div class="check-nav"><button id="checkPrev" class="nav-btn">← Previous</button><button id="checkNext" class="next-btn">Next <span>→</span></button></div>
+</div>
+<div class="keyboard-hint"><kbd>1</kbd> Correct <span>•</span> <kbd>2</kbd> Incorrect <span>•</span> <kbd>Enter</kbd> Next <span>•</span> <kbd>←</kbd><kbd>→</kbd> Navigate <span>•</span> <kbd>Esc</kbd> Finish</div>
+<div class="checking-summary" id="checkingSummary"></div>
+</div>
+</section>
+
+<section id="results" class="hidden">
+<div class="review-page">
+<div class="results-hero"><span class="eyebrow">RESULT</span><h2>Practice checked.</h2><div class="score-box"><strong id="scoreText">0 / 200</strong><span id="accuracyText">0% accuracy</span></div></div>
+<div class="result-stats"><div><span>Correct</span><strong id="finalCorrect">0</strong></div><div><span>Incorrect</span><strong id="finalIncorrect">0</strong></div><div><span>Unattempted</span><strong id="finalUnattempted">0</strong></div><div><span>Marked for review</span><strong id="finalMarked">0</strong></div></div>
+<div class="review-actions"><button id="resultExportBtn" class="start-btn">Export Results ↓</button><button id="resultNewBtn" class="outline-btn">New Practice</button></div>
+<div id="resultGrid" class="review-grid"></div>
+</div>
+</section>
+</main>
+</div><div id="toast" class="toast"></div>
+<script src="script.js"></script>
+</body></html>
