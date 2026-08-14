@@ -18,3 +18,5 @@ Both modes retain the same UI and core features:
 - GitHub Pages/PWA assets and icons
 
 Upload all files to the root of your GitHub Pages repository.
+
+ICON FIX: manifest, favicon.ico/png, Apple Touch Icon, and PWA meta tags are included. If GitHub Pages previously cached the old PWA, uninstall the old app and reinstall after deployment.

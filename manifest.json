@@ -1,18 +1,19 @@
 {
   "name": "NEET Answer Noting",
-  "short_name": "NEET OMR",
-  "description": "NEET OMR-style answer noting and checking tool",
-  "start_url": "./",
+  "short_name": "NEET Answer",
+  "description": "Objective OMR and subjective answer-noting practice tool for NEET.",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "theme_color": "#0b1220",
   "icons": [
     {
       "src": "./icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "./icon-512.png",
